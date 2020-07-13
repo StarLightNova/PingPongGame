@@ -4,7 +4,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.layout.Pane;
 
 public class BallPane extends Pane{
-	private Double side = 25.25;
+	private Double side = 12.5;
 	private Pane primary;
 
 	public BallPane(){
