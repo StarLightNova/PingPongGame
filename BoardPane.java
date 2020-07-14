@@ -8,7 +8,7 @@ public class BoardPane extends Pane{
 	private Double Window_H = 480.00;
 	private BallPane ball;
 	private Pane primaryPane;
-	private MyPlayer leftPlayer, rightPlayer;
+	protected MyPlayer leftPlayer, rightPlayer;
 
 	public BoardPane(){
 		this.primaryPane = new Pane();
@@ -16,6 +16,8 @@ public class BoardPane extends Pane{
 
 		this.leftPlayer = new MyPlayer(this.Window_W / 4, this.Window_H / 2);
 		this.rightPlayer = new MyPlayer(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter() + this.ball.getMyCenter() * 2 , this.Window_H / 2);
+		this.leftPlayer.setSpeed((this.Window_H / this.leftPlayer.getMyPlayerH() + this.Window_W / this.leftPlayer.getMyPlayerW()));
+		this.rightPlayer.setSpeed((this.Window_H / this.rightPlayer.getMyPlayerH() + this.Window_W / this.rightPlayer.getMyPlayerW()));
 
 		this.ball.setTranslateX(this.Window_W / 2 - this.ball.getMyCenter()); // Move to the center
 		this.ball.setTranslateY(this.Window_H / 2 - this.ball.getMyCenter());
