@@ -11,12 +11,20 @@ public class Game extends Application{
 	public void start(Stage primary){
 		BoardPane board = new BoardPane();
 		//board.StartBallMovement();
-		
 
+		double coin = Math.random();
+		double dx = 0.0;
+		if(coin > 0.5)
+			dx = 1;
+		else
+			dx = -1;
+
+		board.randomDirection(dx, 0);
 		Scene scene = new Scene(board, board.getMyWidth(), board.getMyHeight());
 		primary.setTitle("Alpha Test");
 		primary.setScene(scene);
 		primary.show();
+
 
 		board.requestFocus();
 
@@ -56,6 +64,9 @@ public class Game extends Application{
 							board.rightPlayer.TranslateToWindowHeight(board.getMyHeight() - board.rightPlayer.getMyPlayerH());
 					}
 				});
+
+				
+
 			}
 		}).start();
 	}
