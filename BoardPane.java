@@ -5,8 +5,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class BoardPane extends Pane{
-	private Double Window_W = 1280.00;	//Standart Window Resolutions Height and Width
-	private Double Window_H = 720.00;
+	private Double Window_W = 640.00;	//Standart Window Resolutions Height and Width
+	private Double Window_H = 480.00;
 	private BallPane ball;
 	private Pane primaryPane;
 	protected MyPlayer leftPlayer, rightPlayer;
@@ -20,7 +20,7 @@ public class BoardPane extends Pane{
 		this.right_wall = new Wall(false);
 
 		this.leftPlayer = new MyPlayer(this.Window_W / 4, this.Window_H / 2);
-		this.rightPlayer = new MyPlayer(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter() + this.ball.getMyCenter() * 2 , this.Window_H / 2);
+		this.rightPlayer = new MyPlayer(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter() , this.Window_H / 2);
 		this.leftPlayer.setSpeed((this.Window_H / this.leftPlayer.getMyPlayerH() + this.Window_W / this.leftPlayer.getMyPlayerW()));
 		this.rightPlayer.setSpeed((this.Window_H / this.rightPlayer.getMyPlayerH() + this.Window_W / this.rightPlayer.getMyPlayerW()));
 
@@ -29,14 +29,16 @@ public class BoardPane extends Pane{
 		//this.right_wall.moveWallbyX(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter() + this.ball.getMyCenter() * 2);
 		this.right_wall.moveWallbyX(this.Window_W - this.Window_W / 8);
 
-		this.ball.setTranslateX(this.Window_W / 2 - this.ball.getMyCenter()); // Move to the center
-		this.ball.setTranslateY(this.Window_H / 2 - this.ball.getMyCenter());
 		this.primaryPane.setPrefSize(this.Window_W, this.Window_H);	//Set Screen to Standart
 		this.primaryPane.setStyle("-fx-background-color: BLACK");	//Change pane background
+		this.ball.setH(this.Window_H);
+		this.ball.setW(this.Window_W);
+		this.ball.setX(this.Window_W / 2);
+		this.ball.setY(this.Window_H / 2);
 		
 		this.left_score_text = new Text(this.Window_W / 4, 50.00, "PLAYER 1: 0");
 		this.left_score_text.setFill(Color.WHITE);
-		this.right_score_text = new Text(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter() + this.ball.getMyCenter() * 2, 50.00, "PLAYER 2: 0");
+		this.right_score_text = new Text(this.Window_W - this.Window_W / 4 + this.leftPlayer.getMyPlayerCenter(), 50.00, "PLAYER 2: 0");
 		this.right_score_text.setFill(Color.WHITE);
 
 
@@ -55,7 +57,8 @@ public class BoardPane extends Pane{
 	}
 
 	//Move ball using BoardPane
-	public void StartBallMovement(){
-		this.ball.moveBall();
+	public void randomDirection(double x, double y){
+		this.ball.setDX(x);
+		this.ball.setDY(y);
 	}
 }
